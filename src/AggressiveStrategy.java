@@ -1,4 +1,4 @@
-public class AggresiveStrategy implements CombatStrategy {
+public class AggressiveStrategy implements CombatStrategy {
 
     @Override
     public void executeCombat() {

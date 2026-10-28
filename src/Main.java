@@ -1,23 +1,44 @@
 import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("== Game Character Combat System ==");
 
-        Character warrior = new Character(new AggresiveStrategy());
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\nSelected strategy: Aggressive");
-        warrior.fight();
+        Character warrior = new Character(new BalancedStrategy());
 
-        warrior.setStrategy(new DefensiveStrategy());
+        int choice;
 
-        System.out.println("\nSelected strategy: Defensive");
-        warrior.fight();
+        do {
+            System.out.println("\n=== Game Character Combat System ===");
+            System.out.println("1. Aggressive");
+            System.out.println("2. Defensive");
+            System.out.println("3. Balanced");
+            System.out.println("0. Exit");
 
-        warrior.setStrategy(new BalancedStrategy());
+            System.out.print("Choose your combat strategy: ");
+            choice = scanner.nextInt();
 
-        System.out.println("\nSelected strategy: Balanced");
-        warrior.fight();
+            if (choice == 1) {
+                warrior.setStrategy(new AggressiveStrategy());
+            } else if (choice == 2) {
+                warrior.setStrategy(new DefensiveStrategy());
+            } else if (choice == 3) {
+                warrior.setStrategy(new BalancedStrategy());
+            } else if (choice == 0) {
+                System.out.println("Exiting game...");
+            } else {
+                System.out.println("Invalid choice!");
+            }
 
+            if (choice >= 1 && choice <= 3) {
+                warrior.fight();
+            }
+
+        } while (choice != 0);
+
+        scanner.close();
     }
+
 }
